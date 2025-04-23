@@ -1,0 +1,131 @@
+@startuml
+left to right direction
+skinparam defaultFontSize 50
+'==============================
+' Package: Forecast Methods
+'==============================
+package "Forecast Methods" {
+    package "Interface" {
+        ' Defining prediction methods base/interface
+        abstract class ForecastMethodInterface {
+            - dataset: Dataset,
+            - forecast_steps: int,
+            - num_prev_files: int,
+            - sample_idx: int = 0
+            - is_probabilistic: bool = False
+            {abstract} + generate(self): np.ndarray(shape: (T, H, W))
+            + method_is_probabilistic(self): bool
+            + get_forecast_result(self):np.ndarray(shape: ((T, H, W)))
+            + get_forecast_plot_result(self):np.ndarray(shape: ((T, H, W)))
+            + get_forecast_metric_result(self):np.ndarray(shape: ((N, T, H, W)))
+        }
+        abstract class ParametricModelMethod {
+             - model_name: str,
+             - path_to_dir: str,
+
+            {abstract} + generate(self) : np.ndarray(shape: (T, H, W))
+        }
+        abstract class InferenceModelMethod {
+            {abstract} + generate(self) : np.ndarray(shape: (T, H, W))
+        }
+    }
+
+    package "Impl" {
+        class DGMRForecast {
+            - self.dgmr_pre = DGMRPredictor()
+            + generate(self) : np.ndarray(shape: (T, H, W))
+        }
+        class NowcastNetForecast {
+            - self.nowcastnet_pre = NowcastNetPredictor()
+            + generate(self) : np.ndarray(shape: (T, H, W))
+        }
+        class PystepsANVILForecast {
+            + generate(self) : np.ndarray(shape: (T, H, W))
+        }
+        class PystepsExtrapForecast {
+            + generate(self) : np.ndarray(shape: (T, H, W))
+        }
+        class PystepsLINDAdeterForecast {
+            + generate(self) : np.ndarray(shape: (T, H, W))
+        }
+        class PystepsLINDAprobForecast {
+            + generate(self) : np.ndarray(shape: (T, H, W))
+        }
+        class PystepsSPROGForecast {
+            + generate(self) : np.ndarray(shape: (T, H, W))
+        }
+        class PystepsSTEPSForecast {
+            + generate(self) : np.ndarray(shape: (T, H, W))
+        }
+        class UNetAttentionForecast {
+            -  self.unet_pre = UNetPredictor()
+            + generate(self) : np.ndarray(shape: (T, H, W))
+        }
+        class UNetDSAttentionForecast {
+            -  self.unet_pre = UNetPredictor()
+            + generate(self) : np.ndarray(shape: (T, H, W))
+        }
+        class UNetDSForecast {
+            -  self.unet_pre = UNetPredictor()
+            + generate(self) : np.ndarray(shape: (T, H, W))
+        }
+        class UNetForecast {
+            -  self.unet_pre = UNetPredictor()
+            + generate(self) : np.ndarray(shape: (T, H, W))
+        }
+    }
+}
+
+''==============================
+'' Package: Results Providers
+''==============================
+'package "Results Providers" {
+'    package "Interface" {
+'        interface PredictProviderInterface {
+'            - dataset: Dataset,
+'            - model_name: str,
+'            - path_to_dir: str,
+'            - forecast_steps: int,
+'            - num_prev_files: int,
+'            - sample_idx: int = 0
+'            + get_prediction(self) : np.ndarray(shape: (T, H, W))
+'        }
+'    }
+'    package "Impl" {
+'        class DGMRPredicting {
+'            + get_prediction() : np.ndarray(shape: (T, H, W))
+'        }
+'        class NowcastNetPredicting {
+'            + get_prediction() : np.ndarray(shape: (T, H, W))
+'        }
+'        class UNetPredicting {
+'            + get_prediction() : np.ndarray(shape: (T, H, W))
+'        }
+'    }
+'}
+
+'==============================
+' Inheritance and implementation relationships between classes
+'==============================
+ForecastMethodInterface <|-- ParametricModelMethod
+ForecastMethodInterface <|-- InferenceModelMethod
+
+ParametricModelMethod <|-- DGMRForecast
+ParametricModelMethod <|-- NowcastNetForecast
+InferenceModelMethod <|-- PystepsANVILForecast
+InferenceModelMethod <|-- PystepsExtrapForecast
+InferenceModelMethod <|-- PystepsLINDAdeterForecast
+InferenceModelMethod <|-- PystepsLINDAprobForecast
+InferenceModelMethod <|-- PystepsSPROGForecast
+InferenceModelMethod <|-- PystepsSTEPSForecast
+ParametricModelMethod <|-- UNetAttentionForecast
+ParametricModelMethod <|-- UNetDSAttentionForecast
+ParametricModelMethod <|-- UNetDSForecast
+ParametricModelMethod <|-- UNetForecast
+
+'' Results Providers
+'PredictProviderInterface <|.. DGMRPredicting
+'PredictProviderInterface <|.. NowcastNetPredicting
+'PredictProviderInterface <|.. UNetPredicting
+
+@enduml

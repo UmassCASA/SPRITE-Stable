@@ -1,0 +1,31 @@
+# training_config.yaml
+
+precision: "16"                # Precision for training
+diffusion_steps: 1000          # Number of diffusion generation steps
+batch_size: 8                  # Batch size
+output_dir: null               # Output directory
+model_name: "(VTPM)ldcast-diffusion"           # Model name
+num_nodes: 1                   # Number of nodes
+gpus: 1                        # Number of GPUs
+partition: null                # Partition used for SLURM job
+#checkpoint_path: "/work/pi_mzink_umass_edu/SPRITE/outputs/ldcast/diffusion/VTPM/last.ckpt"
+checkpoint_path: null
+strategy: "auto"                 # Training strategy
+precip_weight_cap: 24.0        # Cap for precipitation weights
+epochs: 2000                  # Number of epochs to train
+lr: 2.5e-5                   # Generator learning rate
+fast_dev_run: false            # Fast dev run for testing
+
+future_timesteps: 20
+use_obs: true
+use_nwp: false
+sampler: null
+initial_weights: "/home/zhexu_umass_edu/PycharmProjects/ldcast/models/genforecast/genforecast-radaronly-256x256-20step.pt"
+#initial_weights: null
+strict_weights: true
+model_dir: "/work/pi_mzink_umass_edu/SPRITE/outputs/ldcast/diffusion/VTPM"
+autoenc_weights_fn: "/home/zhexu_umass_edu/PycharmProjects/ldcast/models/autoenc/autoenc-32-0.01.pt"
+nwp_input_patches: 4
+num_nwp_vars: 9
+loss_type: "l2"
+parameterization: "eps" # "eps" or "x0"

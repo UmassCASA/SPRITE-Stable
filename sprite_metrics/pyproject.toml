@@ -1,0 +1,20 @@
+[project]
+name = "sprite_metrics"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+
+dependencies = [
+"torch>=2.6.0",
+    "numpy",
+    "pytorch_msssim",
+    "ruff",
+    "pre-commit"
+]
+
+[tool.uv]
+no-cache = true
+
+[tool.setuptools]
+packages = ["sprite_metrics"]
+package-dir = {"" = "src"}

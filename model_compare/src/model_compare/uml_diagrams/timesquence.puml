@@ -1,0 +1,22 @@
+@startuml
+skinparam defaultFontSize 50
+actor "User" as User
+participant "Start Experiment" as Start
+participant "Parallel Task Scheduler" as Executor
+participant "Process Single Task" as Process
+participant "Run Forecast Experiment\n(Scan Forecast Methods)" as NowExp
+participant "Aggregate \n& Plot Results" as Aggregate
+
+User -> Start: Define \nexperiment process\nin Yaml config
+
+User -> Start: Start \nexperiment
+Start -> Executor: Distribute tasks \nfor each \ndate interval
+Executor -> Process: Execute individual \nexperiment task
+Process -> NowExp: Initialize experiment \n& scan implemented \n   forecast methods
+NowExp -> NowExp: Run forecast, \n\tevaluation,\n\tand visualization
+NowExp --> Process: Return \nevaluation results
+Process --> Executor: \nTask complete
+Executor --> Start: Aggregate \nall results
+Start -> Aggregate: Plot charts \n& save metrics
+Start --> User: Experiment \ncompleted
+@enduml

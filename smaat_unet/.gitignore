@@ -1,0 +1,11 @@
+.idea
+data
+runs
+lightning
+checkpoints
+.ruff_cache
+.mypy_cache
+.env
+.vscode
+plots
+__pycache__

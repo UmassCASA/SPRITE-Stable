@@ -1,0 +1,43 @@
+ABS_SCANNER_SUFFIX_LIST:
+  - Forecast
+BASE_RESULTS_DIR: /work/pi_mzink_umass_edu/SPRITE/outputs/model_compare/experiment_results
+MODEL_BASE_PATH:
+#  This list must contain at least one item
+  - ../../candidate_models/DGMR_model
+  - candidate_models/NowcastNet_model
+#  - candidate_models/UNet_model
+#  - candidate_models/UNetDS_model
+#  - candidate_models/UNetAttention_model
+  - candidate_models/UNetDSAttention_model
+PYSTEPS_METHODS_LIST:
+#  If it's needed avoid pysteps methods running, set to [] instead of empty(None)
+#  []
+  # - PystepsANVILForecast
+#   - PystepsExtrapForecast
+#   - PystepsLINDAdeterForecast
+#   - PystepsLINDAprobForecast
+  # - PystepsSPROGForecast
+   - PystepsSTEPSForecast
+incremental: True
+individually_plotting: True
+experiment_repeat_time: 0
+dates:
+#  "min-density": "20230514_0933"
+#  "min-complexity": "20230505_0331"
+#  "min-intensity": "20240103_0359"
+#  "max-density": "20231109_1519"
+#  "max-complexity": "20231224_1454"
+#  "max-intensity": "20231224_1429"
+#  "median-density": "20230201_2317"
+#  "median-complexity": "20230914_1251"
+#  "median-intensity": "20230426_2241"
+#  "idx:198": 198
+#  "idx:273": 273
+#  "idx:145": 145
+#  "idx:148": 148
+  "idx:116": 116
+#  "idx:331": 331
+#  "idx:202": 202
+#  "idx:134": 134
+#  "idx:68": 68
+#  "idx:290": 290

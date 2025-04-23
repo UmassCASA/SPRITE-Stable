@@ -1,0 +1,32 @@
+[project]
+name = "nowcastnet"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+dependencies = [
+    "casa_datatools",
+    "torch",
+    "torchvision",
+    "numpy",
+    "opencv-python",
+    "einops",
+    "scikit-learn",
+    "matplotlib==3.10.0",
+    "pytorch-msssim==1.0.0",
+    "wandb==0.19.4",
+    "ruff",
+    "pre-commit"
+]
+
+[tool.uv.sources]
+casa_datatools = { workspace = true }
+
+[tool.uv.workspace]
+members = ["../casa_datatools"]
+
+[tool.setuptools]
+packages = ["nowcastnet"]
+package-dir = {"" = "src"}
+
+[tool.uv]
+no-cache = true

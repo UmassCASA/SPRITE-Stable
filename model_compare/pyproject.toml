@@ -1,0 +1,20 @@
+[project]
+name = "model-compare"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+dependencies = [
+    "pandas==2.2.3",
+    "seaborn==0.13.2",
+    "pysteps==1.13.0",
+    "huggingface-hub>=0.29.3",
+    "torchvision==0.20.0",
+    "torch==2.5.0",
+    "opencv-python==4.10.0.84",
+    "casa_datatools",
+    "ruff",
+    "pre-commit"
+]
+
+[tool.uv]
+no-cache = true

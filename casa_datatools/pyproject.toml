@@ -1,0 +1,26 @@
+[project]
+name = "casa_datatools"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+
+dependencies = [
+    "config>=0.5.1",
+    "lightning>=2.5.0.post0",
+    "netcdf4>=1.7.2",
+    "numpy>=2.1.3",
+    "python-dotenv>=1.0.1",
+    "torch>=2.5.0",
+    "paramiko",
+    "pysftp",
+    "scipy",
+    "ruff",
+    "pre-commit"
+]
+
+[tool.setuptools]
+packages = ["casa_datatools"]
+package-dir = {"" = "src"}
+
+[tool.uv]
+no-cache = true

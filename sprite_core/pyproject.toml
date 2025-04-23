@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sprite_core"
+version = "0.1.0"
+description = "SPRITE Core"
+requires-python = ">=3.12"
+classifiers = ["Private :: Do Not Upload"]
+
+
+dependencies = [
+    "python-dotenv",
+    "ruff",
+    "pre-commit"
+]
+
+[tool.setuptools]
+packages = ["sprite_core"]
+package-dir = {"" = "src"}
+
+[tool.uv]
+no-cache = true

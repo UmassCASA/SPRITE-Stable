@@ -1,0 +1,80 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dgmr"
+version = "1.3.4"
+description = "PyTorch Skillful Nowcasting GAN Implementation"
+readme = "README.md"
+requires-python = ">=3.10.11"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Jacob Bieker", email = "jacob@openclimatefix.org" }
+]
+keywords = [
+    "artificial intelligence",
+    "deep learning",
+    "transformer",
+    "attention mechanism",
+    "metnet",
+    "forecasting",
+    "remote-sensing",
+    "gan"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.6"
+]
+dependencies = [
+    "torch>=2.6.0",
+    "antialiased_cnns",
+    "pytorch_msssim",
+    "numpy",
+    "torchvision>=0.11.0",
+    "pytorch_lightning",
+    "einops",
+    "huggingface_hub",
+    "datasets",
+    "TensorFlow",
+    "tensorrt",
+    "wandb",
+    "netcdf4",
+    "pysftp",
+    "xarray",
+    "opencv-python",
+    "pytest",
+    "ruff",
+    "casa_datatools",
+    "pre-commit"
+]
+
+[project.urls]
+repository = "https://github.com/openclimatefix/skillful_nowcasting"
+
+[tool.uv]
+no-cache = true
+
+[[tool.uv.index]]
+name = "pytorch-cu126"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true
+
+[tool.uv.sources]
+torch = [
+  { index = "pytorch-cu126", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
+]
+torchvision = [
+  { index = "pytorch-cu126", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
+]
+casa_datatools = { workspace = true }
+
+[tool.uv.workspace]
+members = ["../casa_datatools"]
+
+[tool.setuptools]
+packages = ["dgmr"]
+package-dir = {"" = "src"}

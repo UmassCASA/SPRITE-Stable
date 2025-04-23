@@ -1,0 +1,29 @@
+precip_cap: 128
+
+train_valid:
+  saturation_constant: 1.0
+  q_min: 2e-4
+  multiplier: 0.1
+  crop_size: [256, 256]
+  spatial_offset: 32
+  data_shape: [24, 366, 350]
+  qn_threshold: 8e-3
+  precip_cap: 128
+  local_directory: "/work/pi_mzink_umass_edu/SPRITE/data/CASAData/train/"
+  output_directory: "/work/pi_mzink_umass_edu/SPRITE/data/CASAData_sequenced_128/train/"
+  validation_directory: "/work/pi_mzink_umass_edu/SPRITE/data/CASAData_sequenced_128/validation/"
+  use_first_3days_as_validation: true
+  normalization_strategy: "ldcast_log"  # Options: log1p, minmax, log1p_minmax, divide_by_200, none
+
+test:
+  saturation_constant: 1.0
+  q_min: 2e-4
+  multiplier: 0.1
+  crop_size: [256, 256]
+  data_shape: [24, 366, 350]
+  qn_threshold: 8e-3
+  precip_cap: 128
+  local_directory: "/work/pi_mzink_umass_edu/SPRITE/data/CASAData/test/"
+  output_directory: "/work/pi_mzink_umass_edu/SPRITE/data/CASAData_sequenced_128/test/"
+  use_first_3days_as_validation: false
+  normalization_strategy: "ldcast_log"  # Options: log1p, minmax, log1p_minmax, divide_by_200, none

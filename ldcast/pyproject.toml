@@ -1,0 +1,48 @@
+[project]
+name = "ldcast"
+version = "0.0.1"
+description = "Latent diffusion for generative precipitation nowcasting"
+authors = [
+    { name = "Jussi Leinonen" }
+]
+readme = "README.md"
+requires-python = ">=3.12"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "dask",
+    "fire",
+    "einops",
+    "h5py",
+    "matplotlib",
+    "netCDF4",
+    "numba",
+    "numpy",
+    "omegaconf",
+    "pyshp",
+    "pytorch-lightning",
+    "scipy",
+    "torch",
+    "tqdm",
+    "casa_datatools",
+    "ruff",
+    "pre-commit"
+]
+
+[tool.uv.sources]
+casa_datatools = { workspace = true }
+
+[tool.uv.workspace]
+members = ["../casa_datatools"]
+
+[tool.setuptools]
+packages = ["ldcast"]
+package-dir = {"" = "src"}
+
+[project.urls]
+homepage = "https://github.com/MeteoSwiss/ldcast"
+
+[tool.uv]
+no-cache = true
